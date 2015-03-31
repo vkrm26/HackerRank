@@ -1,0 +1,112 @@
+
+import java.io.IOException;
+import java.util.Scanner;
+
+
+public class MaxSubArray {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+
+		Scanner sc=new Scanner(System.in); 
+		int tc = sc.nextInt();
+		
+		int len=0;
+		
+		for(int i=0 ; i< tc; i++)
+		{
+			len =sc.nextInt();
+			int[] arr = new int[len] ;
+			for(int j=0; j < len; j++)
+			{
+				arr[j] = sc.
+						nextInt();
+				
+			}
+			System.out.println(findMaxContiguousArray(arr) + " " + findMaxNonContiguousArray(arr));
+		}
+	}
+
+	private static int findMaxNonContiguousArray(int[] arr) {
+		// TODO Auto-generated method stub
+		int best_sum = 0;
+		int neg_sum=0;
+		int count = 0;
+		for(int k=0; k<arr.length; k++)
+		{
+			if(arr[k]>0)
+				{
+				best_sum += arr[k];
+				count++;
+				}
+				
+			else
+				{
+				if(arr[k] < 0)
+					neg_sum += arr[k];
+					neg_sum += best_sum;
+					
+				//
+				}
+		}
+		if(count < arr.length)
+			return neg_sum;
+		else return best_sum;
+	}
+
+	private static int findMaxContiguousArray(int[] arr) {
+		// TODO Auto-generated method stub
+		int current_sum = 0;
+		int best_sum = 0;
+		
+		int second_best = 0;
+		int neg_sum=-1;
+		int count = 0;
+		for(int k=0; k<arr.length; k++)
+		{
+			if(arr[k] < 0)
+			{
+				neg_sum += arr[k];
+				neg_sum += best_sum;
+				}
+			else
+				break;
+		}
+		if(count == arr.length)
+			return neg_sum;
+		
+		for(int k=0; k<arr.length; k++)
+		{  
+			current_sum = current_sum+arr[k];
+			if(current_sum > 0)
+			{		
+			
+			//best_start_index = ;
+			if(current_sum>best_sum)
+				best_sum = current_sum;
+				
+			else
+				{//current_sum = 0;
+				if(second_best < best_sum)
+					{
+					second_best = best_sum;
+					best_sum = 0;
+					}
+				//if(current_sum < 0)
+					
+			
+			}
+			}
+			else
+			{
+				if(best_sum>second_best)
+					second_best = best_sum;
+				best_sum=0;
+				current_sum=0;
+			}
+		}
+		if(best_sum > second_best)
+			return best_sum;
+		else return second_best;
+	}
+	
+}
