@@ -1,0 +1,44 @@
+
+import java.util.Scanner;
+
+public class Solution {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		int tc = sc.nextInt();
+
+		String s = null;
+		for (int i = 0; i < tc; i++) {
+			s = sc.next();
+			System.out.println(findNumOfAnagrams(s));
+		}
+
+	}
+
+	private static int findNumOfAnagrams(String s) {
+
+		int[] arr = new int[26];
+		char[] s_to_arr = s.toCharArray();
+
+		int len = s_to_arr.length;
+
+		for (int i = 0; i < len; i++) {
+			arr[s_to_arr[i] - 97] += 1;
+
+		}
+
+		int count = 1;
+		for (int i = 0; i < 26; i++) {
+			if (arr[i] != 0)
+				count *= arr[i];
+
+		}
+
+		if (count == 1)
+			return 0;
+
+		return count;
+	}
+
+}
