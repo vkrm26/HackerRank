@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+		
+		
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int tc = sc.nextInt();
+		
+		sc.nextLine();
+		int first, second;
+		
+		int[] arr = new int[n];
+		int[] res = new int[tc];
+		
+		for(int i=0; i<n; i++)
+		{
+			arr[i] = sc.nextInt();
+		}
+		for(int j=0; j<tc; j++)
+		{
+			first = sc.nextInt();
+			second = sc.nextInt();
+			res[j] = maxCount(arr, first, second);
+			
+		}
+		
+		for(int l=0; l<tc; l++)
+			System.out.println(res[l]);
+		
+		
+	}
+
+	private static int maxCount(int[] arr, int first, int second) {
+		// TODO Auto-generated method stub
+		int max=arr[first];
+		for(int k=first; k<=second; k++)
+		{
+			if(arr[first] < max)
+				max = arr[first];
+			
+			first++;
+		}
+		return max;
+	}
+}
