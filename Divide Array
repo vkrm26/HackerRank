@@ -1,0 +1,52 @@
+/* IMPORTANT: class must not be public. */
+
+// uncomment this if you want to read input.
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+	        
+	        // Read input from stdin and provide input before running
+
+	        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	        String line = br.readLine();
+	        int N = Integer.parseInt(line);
+	        
+	        int[] arr = new int[N];
+	        String line1 = br.readLine();
+	        String [] numbers = line1.split("\\s+");
+	        for (int i = 0; i < N; i++) {
+	            
+	            arr[i] = Integer.parseInt(numbers[i]);
+	        }
+	        
+	        String line2 = br.readLine();
+	        int q = Integer.parseInt(line2);
+	        int[] queries = new int[q];
+	        
+	        for (int j =0; j < q; j++)
+	        {
+	        	String line3 = br.readLine();
+	        	int temp = Integer.parseInt(line3);
+	        	if(temp != 0)
+	        	 { queries[j] = temp;}
+	        	
+	        }
+	        
+	        for( int k =0; k < q; k++)
+	        {
+	        	for(int l = 0; l < arr.length; l++)
+		    	{
+		    		arr[l] = arr[l]/queries[k];
+		    	}
+	        }
+	        
+	        for(int m = 0; m < N; m++){
+	        System.out.print(arr[m] + " ");
+	        }
+	    }
+	   
+    
+}
