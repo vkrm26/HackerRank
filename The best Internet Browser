@@ -1,0 +1,34 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+class TestClass {
+    public static void main(String[] args) throws IOException {
+		
+		String str = null;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		str = br.readLine();
+		int i = Integer.parseInt(str);
+	    ArrayList<String> ar = new ArrayList<String>();
+		
+		for(int j =0; j<i; j++){
+			str = br.readLine();
+			String[] s = str.split("\\.");
+			ar.add(s[1]);
+		}
+		
+		for(int j =0; j<i; j++)
+		{   
+			String s =  ar.get(j);
+			int count = s.length();
+			int c1 = s.length()-s.replaceAll("a","").length();
+			int c2 = s.length()-s.replaceAll("e", "").length();
+			int c3 = s.length()-s.replaceAll("o", "").length();
+			int c4 = s.length()-s.replaceAll("u", "").length();
+			int c5 = s.length()-s.replaceAll("i", "").length();
+			int cal = count-c1-c2-c3-c4-c5+4;
+			System.out.println(cal+"/"+(count+8));
+		}
+	}
+}
