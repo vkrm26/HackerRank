@@ -1,0 +1,150 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class TestClass {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		
+		String s = null;
+		
+		List<String> ls = new ArrayList<String>();
+		//int[] arr = new int[5*n];
+		int N, x, y, z ,t;
+		String A, B = null;
+		for(int i =0; i<n; i++)
+		{
+			 N = sc.nextInt();
+			 x = sc.nextInt();
+			 y = sc.nextInt();
+			 z = sc.nextInt();
+			 t = sc.nextInt();
+			 A = sc.next();
+			 B = sc.next();
+			 System.out.println(printResult(A, B, N, x, y, z, t));
+		}
+		
+		
+	}
+
+	private static int printResult(String a, String b, int n, int x, int y, int z, int t) {
+		// TODO Auto-generated method stub
+		
+		char[] tempA = a.toCharArray();
+		char[] tempB = b.toCharArray();
+		char a1, b1;
+		int count=0;
+		for(int i=0; i<n; i++)
+		{
+			a1 = tempA[i];
+			b1 = tempB[i];
+			if(a1 == '0' && b1 == '1')
+			{
+				
+				if(i+1 < n && tempA[i+1] == '1' &&  tempB[i+1] == '0' && x >= t) 
+					{
+					tempA = swap(tempA, i, i+1);
+					count += t;
+					}
+				else if( i+1 < n && tempA[i+1] == '1' && tempB[i+1] == '1' && x >= t) 
+					{
+					tempA = swap(tempA, i, i+1);
+					count +=t;
+					//count -= y;
+					
+					}
+				else if(i+1 < n && tempA[i+1] == '?' &&  tempB[i+1] == '0' && x > t + z)
+				{
+					tempA = swap(tempA, i, i+1);
+					count += t+z;
+			    }
+				else if(i+1 < n && tempA[i+1] == '?' &&  tempB[i+1] == '1' && x > t + z)
+				{
+					tempA = swap(tempA, i, i+1);
+					count += t+z;
+					
+			    }
+				else
+					count +=x;
+					
+					
+			}
+			else if(a1 == '1' && b1 == '0')
+			{
+				if(i+1 < n && tempA[i+1] == '?' &&  tempB[i+1] == '0' && y > t + z)
+				{
+					tempA = swap(tempA, i, i+1);
+					count += t+z;
+					
+			    }
+				else if(i+1 < n && tempA[i+1] == '?' &&  tempB[i+1] == '1' && y > t + z)
+				{
+					tempA = swap(tempA, i, i+1);
+					count += t+z;
+					
+			    }
+				else if(i+1 < n && tempA[i+1] == '0' &&  tempB[i+1] == '1' && y >= t)
+				{
+					tempA = swap(tempA, i, i+1);
+					count += t;
+					
+			    }
+				else 
+					count += y;
+			}
+			else if(a1 == '?' && b1 == '0')
+			{
+				if(i+1 < n && tempA[i+1] == '0' &&  tempB[i+1] == '1' && z > t+x )
+				{
+					tempA = swap(tempA, i, i+1);
+					count += t;
+					
+			    }
+				else if(i+1 < n && tempA[i+1] == '1' &&  tempB[i+1] == '0' && z > t + y)
+				{
+					tempA = swap(tempA, i, i+1);
+					count += t+y;
+					
+			    }
+				
+				else 
+					count += z;
+			}
+			
+			else if(a1 == '?' && b1 == '1')
+			{
+				if(i+1 < n && tempA[i+1] == '0' &&  tempB[i+1] == '1' && z > t+x )
+				{
+					tempA = swap(tempA, i, i+1);
+					count += t+x;
+					
+			    }
+				else if(i+1 < n && tempA[i+1] == '1' &&  tempB[i+1] == '0' && z > t+y )
+				{
+					tempA = swap(tempA, i, i+1);
+					count += t;
+					
+			    }
+				
+				else 
+					count += z;
+			}
+		}
+		
+		
+		return count;
+	}
+
+	private static char[] swap(char[] tempA, int i, int j) {
+		// TODO Auto-generated method stub
+		char a = tempA[i];
+		tempA[i] = tempA[i+1];
+		tempA[i+1] = a;
+		return tempA;
+	}
+
+	
+}
