@@ -1,0 +1,39 @@
+
+import java.util.Scanner;
+
+public class Solution {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		int tc = sc.nextInt();
+
+		for (int i = 0; i < tc; i++) {
+			String str2 = sc.next();
+			if (str2.length() % 2 != 0) {
+				System.out.println("-1");
+			} else
+				System.out.println(findNumOfInversion(str2));
+		}
+
+	}
+
+	private static int findNumOfInversion(String str2) {
+
+		int len = str2.length();
+
+		char[] arr1 = str2.substring(0, len / 2).toCharArray();
+		StringBuilder sb = new StringBuilder(str2.substring(len / 2, len));
+
+		int count = 0;
+		for (char ch : arr1) {
+			int index = sb.indexOf("" + ch);
+			if (index != -1)
+				sb.deleteCharAt(index);
+			else
+				count++;
+		}
+
+		return count;
+	}
+}
