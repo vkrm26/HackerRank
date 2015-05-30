@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        
+        Scanner sc=new Scanner(System.in); 
+		String n = sc.nextLine();
+		String low = n.toLowerCase();
+		
+		char[] strArray = low.toCharArray();
+		
+		HashSet<Character> s = new HashSet<Character>();
+		
+		for(int i = 0; i<strArray.length; i++)
+		{
+			s.add(strArray[i]);
+		}
+		
+		if(s.size()==27)
+			System.out.println("pangram");
+		else
+			System.out.println("not pangram");
+    }
+}
