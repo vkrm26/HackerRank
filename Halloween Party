@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+import java.math.BigInteger;
+
+public class Solution {
+
+    public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		
+		int a;
+		BigInteger b, c;
+		BigInteger [] arr = new BigInteger[n];
+		for(int i=0; i<n; i++)
+		{
+			a = sc.nextInt();
+			b = BigInteger.valueOf(a/2);
+			if(a%2==0)
+				arr[i]=b.multiply(b);
+			else
+				{c = b.add(BigInteger.ONE);
+				arr[i]=b.multiply(c);}
+		}
+		
+		for(int j=0; j<n; j++)
+			System.out.println(arr[j]);
+	}
+}
