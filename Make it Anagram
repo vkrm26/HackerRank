@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+ public static void main(String[] args) {
+		
+		Scanner sc=new Scanner(System.in); 
+		String str1 = sc.next();
+		String str2 = sc.next();
+		
+		int c = checkIfAnagram(str1, str2);
+		System.out.println(c);
+		
+}
+
+private static int checkIfAnagram(String str1, String str2) {
+	char[] arr1 = str1.toCharArray();
+	StringBuilder s = new StringBuilder(str2);
+	int count =0;
+	for(char ch : arr1)
+	{
+		int index = s.indexOf("" + ch);
+		if(index != -1)
+			{s.deleteCharAt(index);}
+		else count++;
+	}
+	count+=s.toString().length();
+	return count;
+}
+}
