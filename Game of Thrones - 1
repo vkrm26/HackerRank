@@ -1,0 +1,36 @@
+
+
+import java.util.Scanner;
+
+public class Solution {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		String str = sc.next();
+
+		System.out.println(findPalindromeInIt(str));
+
+	}
+
+	private static String findPalindromeInIt(String str) {
+
+		char[] s = str.toCharArray();
+		int[] arr = new int[26];
+
+		for (int i = 0; i < s.length; i++) {
+			arr[(s[i]) - 97] += 1;
+		}
+		int count = 0;
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] % 2 == 1)
+				count++;
+
+		}
+		if (count > 1)
+			return "NO";
+		else
+			return "YES";
+	}
+
+}
